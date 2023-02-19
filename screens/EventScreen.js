@@ -2,23 +2,22 @@ import { FlatList } from "react-native";
 import { Avatar, ListItem } from 'react-native-elements';
 
 const EventScreen = (props) => {
-    const renderEventItem = ({ item: band }) => {
+    const renderEventItem = ({ item: event }) => {
         return (
             <ListItem>
-                <Avatar source={band.image} rounded />
+                <Avatar source={event.image} rounded />
                 <ListItem.Content>
-                    <ListItem.Title>{band.name}</ListItem.Title>
+                    <ListItem.Title>{event.name}</ListItem.Title>
                     <ListItem.Subtitle>
-                        {band.description}
+                        {event.description}
                     </ListItem.Subtitle>
                 </ListItem.Content>
             </ListItem>
         );
     };
-
     return (
         <FlatList 
-            data={props.bands}
+            data={props.events}
             renderItem={renderEventItem}
             keyExtractor={(item) => item.id.toString()}
         />

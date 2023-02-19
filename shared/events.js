@@ -1,4 +1,4 @@
-export const BANDS = [
+export const EVENTS = [
     {
         id: 0,
         name: "Even Flow",
