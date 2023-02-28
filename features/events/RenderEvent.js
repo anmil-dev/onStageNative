@@ -1,11 +1,11 @@
 import { Text, View } from 'react-native';
 import { Card } from 'react-native-elements';
 
-const RenderEvent = ({ event }) => {
-    if (event) {
+const RenderEvent = ({ events }) => {
+    if (events) {
         return (
         <Card containerStyle={{ padding: 0 }}>
-            <Card.Image source={event.image}>
+            <Card.Image source={events.image}>
                 <View style={{ justifyContent: 'center', flex: 1 }}>
                     <Text
                         style={{
@@ -14,12 +14,12 @@ const RenderEvent = ({ event }) => {
                             fontSize: 20
                         }}
                     >
-                        {event.name}
+                        {events.name}
                     </Text>
                 </View>
             </Card.Image>
             <Text style={{ margin: 20}}>
-                {event.description}
+                {events.description}
             </Text>
         </Card>
         );

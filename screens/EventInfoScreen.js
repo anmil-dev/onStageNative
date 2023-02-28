@@ -1,7 +1,9 @@
 import RenderEvent from '../features/events/RenderEvent';
 
-const EventInfoScreen = (props) => {
-    return <RenderEvent event={props.event} />;
+const EventInfoScreen = ({route}) => {
+    const { events } = route.params;
+
+    return <RenderEvent events={events} />;
 };
 
 export default EventInfoScreen;
