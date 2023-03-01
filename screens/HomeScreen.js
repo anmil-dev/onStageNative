@@ -1,11 +1,14 @@
-import { Text, View } from 'react-native';
+import React from 'react'
+import { View } from 'react-native'
+import CarouselCards from '../features/Carousel/CarouselCards'
 
 const HomeScreen = () => {
     return (
         <View>
-            <Text>Home Screen</Text>
+            <CarouselCards />
         </View>
-    )
-};
+    );
+}
+
 
 export default HomeScreen;
