@@ -1,10 +1,11 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import CarouselCards from '../features/Carousel/CarouselCards'
 
 const HomeScreen = () => {
     return (
         <View style={styles.container}>
+            <Text>Carousel here</Text>
             <CarouselCards />
         </View>
     );
