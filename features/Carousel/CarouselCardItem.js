@@ -9,7 +9,7 @@ const CarouselCardItem = ({ item, index }) => {
         <View style={styles.container} key={index}>
             <Image
             source={{ uri: item.image }}
-            style={styles.image}
+            style={styles.images}
             />
             <Text style={styles.header}>{item.name}</Text>
             <Text style={styles.body}>{item.description}</Text>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         shadowRadius: 4.65,
         elevation: 7,
     },
-    image: {
+    images: {
         width: ITEM_WIDTH,
         height: 800,
     },

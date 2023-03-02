@@ -5,6 +5,8 @@ import Constants from 'expo-constants';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './HomeScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import AboutScreen from './AboutScreen';
+import ContactScreen from './ContactScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -51,6 +53,34 @@ const EventNavigator = () => {
     );
 }
 
+const AboutNavigator = () => {
+    const Stack = createStackNavigator();
+
+    return (
+        <Stack.Navigator screenOptions= {screenOptions}>
+            <Stack.Screen
+                name='about'
+                component={AboutScreen}
+                options={{title: 'FAQs'}}
+            />
+        </Stack.Navigator>
+    )
+}
+
+const ContactNavigator = () => {
+    const Stack = createStackNavigator();
+
+    return (
+        <Stack.Navigator screenOptions= {screenOptions}>
+            <Stack.Screen
+                name='contact'
+                component={ContactScreen}
+                options={{title: 'Contact & Directions'}}
+            />
+        </Stack.Navigator>
+    )
+}
+
 const Main = () => {
     return (
         <View 
@@ -71,7 +101,14 @@ const Main = () => {
                 <Drawer.Screen 
                     name= 'Events'
                     component= {EventNavigator}
-                    options={{title: 'Events' }}
+                />
+                <Drawer.Screen 
+                    name= 'FAQs'
+                    component= {AboutNavigator}
+                />
+                <Drawer.Screen 
+                name= 'Contact & Directions'
+                component= {ContactNavigator}
                 />
             </Drawer.Navigator>
         </View>
