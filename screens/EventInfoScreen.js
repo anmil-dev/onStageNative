@@ -1,9 +1,66 @@
+import { useState } from 'react';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import RenderEvent from '../features/events/RenderEvent';
+import { COMMENTS } from '../shared/comments';
 
-const EventInfoScreen = ({route}) => {
+const EventInfoScreen = ({ route }) => {
     const { events } = route.params;
 
-    return <RenderEvent events={events} />;
+    const [comments, setComments] = useState(COMMENTS);
+    const [favorite, setFavorite] = useState(false);
+
+    const renderEventItem = ({ item }) => {
+        return (
+            <View style={styles.commentItem}>
+                <Text style={{ fontSize: 14 }}>{item.text}</Text>
+                <Text style={{ fontSize: 12 }}>{item.rating} Stars</Text>
+                <Text style={{ fontSize: 12 }}>
+                    {`-- ${item.author}, ${item.date}`}
+                </Text>
+            </View>
+        );
+    };
+
+    return (
+        <FlatList
+            data={comments.filter(
+                (comment) => comment.eventId === events.id
+            )}
+            renderItem={renderEventItem}
+            keyExtractor={(item) => item.id.toString()}
+            contentContainerStyle={{
+                marginHorizontal: 20,
+                paddingVertical: 20
+            }}
+            ListHeaderComponent={
+                <>
+                    <RenderEvent
+                        events={events}
+                        isFavorite={favorite}
+                        markFavorite={() => setFavorite(true)}
+                    />
+                    <Text style={styles.commentsTitle}>Comments</Text>
+                </>
+            }
+        />
+    );
 };
+
+const styles = StyleSheet.create({
+    commentsTitle: {
+        textAlign: 'center',
+        backgroundColor: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#43484D',
+        padding: 10,
+        paddingTop: 30
+    },
+    commentItem: {
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        backgroundColor: '#fff'
+    }
+});
 
 export default EventInfoScreen;
