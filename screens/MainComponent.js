@@ -1,6 +1,7 @@
 import EventScreen from './EventScreen';
 import EventInfoScreen from './EventInfoScreen';
-import { Platform, View } from 'react-native';
+import { Platform, View, StyleSheet } from 'react-native';
+import { Icon } from 'react-native-elements';
 import Constants from 'expo-constants';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './HomeScreen';
@@ -13,7 +14,7 @@ const Drawer = createDrawerNavigator();
 const screenOptions = {
     headerTintColor: '#fff',
     headerStyle: { backgroundColor: '#000000' }
-}
+};
 
 const HomeNavigator = () => {
     const Stack = createStackNavigator();
@@ -23,7 +24,17 @@ const HomeNavigator = () => {
             <Stack.Screen
                 name='home'
                 component={HomeScreen}
-                options={{title: 'Home'}}
+                options={({ navigation }) => ({
+                    title: 'Home',
+                    headerLeft: () => (
+                        <Icon
+                            name='home'
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    )
+                })}
             />
         </Stack.Navigator>
     )
@@ -34,11 +45,11 @@ const EventNavigator = () => {
 
     return (
         <Stack.Navigator 
-            initialRouteName= 'Directory'
+            initialRouteName= 'Events'
             screenOptions= { screenOptions }
         >
             <Stack.Screen 
-                name= 'Directory'
+                name= 'Events'
                 component= {EventScreen}
                 options= {{ title: 'Events'}}
             />
@@ -114,5 +125,31 @@ const Main = () => {
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    stackIcon: {
+        marginLeft: 10,
+        color: '#fff',
+        fontSize: 24
+    },
+    // drawerHeader: {
+    //     backgroundColor: '#5637DD',
+    //     height: 140,
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //     flex: 1,
+    //     flexDirection: 'row'
+    // },
+    // drawerHeaderText: {
+    //     color: '#fff',
+    //     fontSize: 24,
+    //     fontWeight: 'bold'
+    // },
+    // drawerImage: {
+    //     margin: 10,
+    //     height: 60,
+    //     width: 60
+    // }
+});
 
 export default Main;
